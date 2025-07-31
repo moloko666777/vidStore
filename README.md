@@ -199,3 +199,11 @@ MIT License - см. файл [LICENSE](LICENSE)
 ## ⚠️ Отказ от ответственности
 
 Этот проект предназначен только для образовательных целей. Используйте на свой страх и риск. Авторы не несут ответственности за использование проекта. 
+
+## Disclaimer
+
+This parser is for educational purposes only. Please respect the terms of service of the websites being parsed and ensure you have the right to access their content.
+
+---
+
+**Last updated:** July 31, 2024 - Vercel deployment fix applied 
