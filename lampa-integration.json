@@ -1,0 +1,31 @@
+{
+  "parser": {
+    "name": "Ukraine Parser",
+    "type": "custom",
+    "base_url": "https://vid-store.vercel.app",
+    "search_url": "/api/search?query={query}",
+    "movie_url": "/api/movie/{id}/full?source={source}",
+    "series_url": "/api/series/{id}/full?source={source}",
+    "stream_url": "/api/stream/{id}?source={source}",
+    "sources": ["filmix", "baskino"],
+    "version": "1.0.0",
+    "description": "Parser for Ukrainian streaming sites (Filmix, Baskino)",
+    "author": "moloko666777",
+    "repository": "https://github.com/moloko666777/vidStore",
+    "raw_url": "https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json"
+  },
+  "installation": {
+    "method": "github_raw",
+    "url": "https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json",
+    "instructions": "Add this URL in Lampa parser settings"
+  },
+  "features": {
+    "search": true,
+    "movies": true,
+    "series": true,
+    "streams": true,
+    "multiple_sources": true,
+    "quality_filtering": true,
+    "player_filtering": true
+  }
+} 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukraine Parser Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .container {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .endpoint {
+            background: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #007acc;
+        }
+        .url {
+            color: #00ff88;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .test-btn {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-btn:hover {
+            background: #005a9e;
+        }
+        .result {
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .error {
+            color: #ff6b6b;
+        }
+        .success {
+            color: #51cf66;
+        }
+    </style>
+</head>
+<body>
+    <h1>🇺🇦 Ukraine Parser Test</h1>
+    
+    <div class="container">
+        <h2>📡 API Endpoints</h2>
+        
+        <div class="endpoint">
+            <strong>Health Check:</strong>
+            <div class="url">https://vid-store.vercel.app/health</div>
+            <button class="test-btn" onclick="testEndpoint('/health')">Test</button>
+        </div>
+        
+        <div class="endpoint">
+            <strong>Available Sources:</strong>
+            <div class="url">https://vid-store.vercel.app/api/search/sources/available</div>
+            <button class="test-btn" onclick="testEndpoint('/api/search/sources/available')">Test</button>
+        </div>
+        
+        <div class="endpoint">
+            <strong>Search:</strong>
+            <div class="url">https://vid-store.vercel.app/api/search?query=тест</div>
+            <button class="test-btn" onclick="testEndpoint('/api/search?query=тест')">Test</button>
+        </div>
+        
+        <div class="endpoint">
+            <strong>Root API Info:</strong>
+            <div class="url">https://vid-store.vercel.app/</div>
+            <button class="test-btn" onclick="testEndpoint('/')">Test</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>🔗 Lampa Integration</h2>
+        <p><strong>GitHub Raw URL:</strong></p>
+        <div class="url">https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json</div>
+        <button class="test-btn" onclick="testParserConfig()">Test Parser Config</button>
+    </div>
+    
+    <div class="container">
+        <h2>📊 Test Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://vid-store.vercel.app';
+        
+        async function testEndpoint(endpoint) {
+            const url = BASE_URL + endpoint;
+            const resultDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const result = document.createElement('div');
+                result.className = 'result success';
+                result.innerHTML = `✅ ${endpoint}\nStatus: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`;
+                resultDiv.appendChild(result);
+            } catch (error) {
+                const result = document.createElement('div');
+                result.className = 'result error';
+                result.innerHTML = `❌ ${endpoint}\nError: ${error.message}`;
+                resultDiv.appendChild(result);
+            }
+        }
+        
+        async function testParserConfig() {
+            const url = 'https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json';
+            const resultDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const result = document.createElement('div');
+                result.className = 'result success';
+                result.innerHTML = `✅ Parser Config\nStatus: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`;
+                resultDiv.appendChild(result);
+            } catch (error) {
+                const result = document.createElement('div');
+                result.className = 'result error';
+                result.innerHTML = `❌ Parser Config\nError: ${error.message}`;
+                resultDiv.appendChild(result);
+            }
+        }
+        
+        // Auto-test on load
+        window.onload = function() {
+            testEndpoint('/health');
+        };
+    </script>
+</body>
+</html> 
