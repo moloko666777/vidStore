@@ -6,8 +6,8 @@ node:events:495
 Error: listen EADDRINUSE: address already in use :::3000
     at Server.set🔍 Starting search for: "test" on sources: filmix, baskino
 🔍 Starting search for: "test" on sources: filmix, baskino
-947:7)
-    at Function.listen (/home/mol/WebstormProjects/vidStore/node_modules/express/lib/application.js:635:24)
+🔍 Starting search for: "test" on sources: filmix, baskino
+Store/node_modules/express/lib/application.js:635:24)
     at Object.<anonymous> (/home/mol/WebstormProjects/vidStore/index.js:59:5)
     at Module._compile (node:internal/modules/cjs/loader:1356:14)
     at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
