@@ -56,6 +56,8 @@ curl http://localhost:3000/api/search/sources/available
 curl "http://localhost:3000/api/search?query=название фильма"
 ```
 
+📖 Подробные инструкции по тестированию и добавлению на GitHub: [TESTING_AND_GITHUB.md](./TESTING_AND_GITHUB.md)
+
 ## 📡 API Endpoints
 
 ### Поиск
@@ -115,16 +117,22 @@ curl "http://localhost:3000/api/search?query=название фильма"
 
 После развертывания добавьте парсер в Lampa:
 
-```json
-{
+```javascript
+var parser = {
   "name": "Ukraine Parser",
   "type": "custom",
   "base_url": "https://your-url.vercel.app",
   "search_url": "/api/search?query={query}",
   "movie_url": "/api/movie/{id}/full?source={source}",
   "series_url": "/api/series/{id}/full?source={source}",
-  "stream_url": "/api/stream/{id}?source={source}"
-}
+  "stream_url": "/api/stream/{id}?source={source}",
+  "sources": ["filmix", "baskino"]
+};
+```
+
+Добавьте URL в настройки Lampa (замените на URL вашего развернутого проекта):
+```
+https://raw.githubusercontent.com/moloko666777/vidStore/main/surs.js
 ```
 
 📖 Подробные инструкции: [LAMPA_INTEGRATION.md](./LAMPA_INTEGRATION.md)

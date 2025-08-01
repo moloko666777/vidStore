@@ -64,42 +64,42 @@
 </head>
 <body>
     <h1>🇺🇦 Ukraine Parser Test</h1>
-    
+
     <div class="container">
         <h2>📡 API Endpoints</h2>
-        
+
         <div class="endpoint">
             <strong>Health Check:</strong>
             <div class="url">https://vid-store.vercel.app/health</div>
             <button class="test-btn" onclick="testEndpoint('/health')">Test</button>
         </div>
-        
+
         <div class="endpoint">
             <strong>Available Sources:</strong>
             <div class="url">https://vid-store.vercel.app/api/search/sources/available</div>
             <button class="test-btn" onclick="testEndpoint('/api/search/sources/available')">Test</button>
         </div>
-        
+
         <div class="endpoint">
             <strong>Search:</strong>
             <div class="url">https://vid-store.vercel.app/api/search?query=тест</div>
             <button class="test-btn" onclick="testEndpoint('/api/search?query=тест')">Test</button>
         </div>
-        
+
         <div class="endpoint">
             <strong>Root API Info:</strong>
             <div class="url">https://vid-store.vercel.app/</div>
             <button class="test-btn" onclick="testEndpoint('/')">Test</button>
         </div>
     </div>
-    
+
     <div class="container">
         <h2>🔗 Lampa Integration</h2>
-        <p><strong>GitHub Raw URL:</strong></p>
-        <div class="url">https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json</div>
+        <p><strong>Direct JS URL (пример):</strong></p>
+        <div class="url">https://raw.githubusercontent.com/moloko666777/vidStore/main/surs.js</div>
         <button class="test-btn" onclick="testParserConfig()">Test Parser Config</button>
     </div>
-    
+
     <div class="container">
         <h2>📊 Test Results</h2>
         <div id="results"></div>
@@ -107,15 +107,15 @@
 
     <script>
         const BASE_URL = 'https://vid-store.vercel.app';
-        
+
         async function testEndpoint(endpoint) {
             const url = BASE_URL + endpoint;
             const resultDiv = document.getElementById('results');
-            
+
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                
+
                 const result = document.createElement('div');
                 result.className = 'result success';
                 result.innerHTML = `✅ ${endpoint}\nStatus: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`;
@@ -127,15 +127,19 @@
                 resultDiv.appendChild(result);
             }
         }
-        
+
         async function testParserConfig() {
-            const url = 'https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json';
+            const url = 'https://raw.githubusercontent.com/moloko666777/vidStore/main/surs.js';
             const resultDiv = document.getElementById('results');
-            
+
             try {
                 const response = await fetch(url);
-                const data = await response.json();
-                
+                const text = await response.text();
+                // For JS files, we need to evaluate the content differently
+                // This is a simple approach - in production, you might want a more robust solution
+                const scriptContent = text.replace(/var\s+parser\s*=\s*/, '');
+                const data = JSON.parse(scriptContent.replace(/;$/, ''));
+
                 const result = document.createElement('div');
                 result.className = 'result success';
                 result.innerHTML = `✅ Parser Config\nStatus: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`;
@@ -147,7 +151,7 @@
                 resultDiv.appendChild(result);
             }
         }
-        
+
         // Auto-test on load
         window.onload = function() {
             testEndpoint('/health');

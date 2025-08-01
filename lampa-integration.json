@@ -12,12 +12,12 @@
     "description": "Parser for Ukrainian streaming sites (Filmix, Baskino)",
     "author": "moloko666777",
     "repository": "https://github.com/moloko666777/vidStore",
-    "raw_url": "https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json"
+    "raw_url": "https://raw.githubusercontent.com/moloko666777/vidStore/main/surs.js"
   },
   "installation": {
-    "method": "github_raw",
-    "url": "https://raw.githubusercontent.com/moloko666777/vidStore/main/parser.json",
-    "instructions": "Add this URL in Lampa parser settings"
+    "method": "direct_js",
+    "url": "https://raw.githubusercontent.com/moloko666777/vidStore/main/surs.js",
+    "instructions": "Add your deployed URL in Lampa parser settings (replace with your own URL)"
   },
   "features": {
     "search": true,

@@ -13,17 +13,26 @@
 
 ### 2. Конфигурация парсера
 
-```json
-{
+```javascript
+var parser = {
   "name": "Ukraine Parser",
   "type": "custom",
   "base_url": "https://your-deployed-url.vercel.app",
   "search_url": "/api/search?query={query}",
   "movie_url": "/api/movie/{id}/full?source={source}",
   "series_url": "/api/series/{id}/full?source={source}",
-  "stream_url": "/api/stream/{id}?source={source}"
-}
+  "stream_url": "/api/stream/{id}?source={source}",
+  "sources": ["filmix", "baskino"]
+};
 ```
+
+### 3. Добавление URL в Lampa
+
+В настройках Lampa добавьте URL вашего развернутого проекта:
+```
+https://raw.githubusercontent.com/moloko666777/vidStore/main/surs.js
+```
+(Замените URL на ваш собственный после развертывания)
 
 ### 3. Поддерживаемые источники
 
